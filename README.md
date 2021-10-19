@@ -10,7 +10,7 @@ Sistema de locação de quadras na região de São Paulo
 
 ### Pré-requisitos
 1. Java e JDK instalado na máquina
-2. MSSQL instalado na máquina
+2. MYSQL instalado na máquina
 3. Eclipse instalado na máquina
 
 ### Passos da Instalação:
