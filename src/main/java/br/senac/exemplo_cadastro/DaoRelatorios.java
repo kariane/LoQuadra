@@ -9,10 +9,9 @@ public class DaoRelatorios {
 	
 	public static List<Quadra> relatorio_quadras_mais_caras() throws Exception {
 		
-		String sql = "SELECT locacao.id_locacao,locacao.id_usuario,locacao.id_quadra,quadra.tipo_quadra,locacao.valor,locacao.status_locacao\r\n"
-				+ "FROM quadra INNER JOIN locacao\r\n"
-				+ "ON locacao.? = quadra.?\r\n"
-				+ "WHERE status_locacao=\"alugado\" ORDER BY valor DESC";
+		String sql = "SELECT B.id_locacao, C.nome, A.nome_quadra, A.tipo_quadra, B.valor, B.status_locacao "
+				+ "FROM quadra AS A INNER JOIN locacao AS B ON B.? = A.? LEFT JOIN usuario AS C "
+				+ "ON B.?=C.? WHERE B.status_locacao=\"alugado\" ORDER BY valor DESC\r\n";
 		
 		List<Quadra> resultados = new ArrayList<Quadra>();
 		
@@ -20,9 +19,11 @@ public class DaoRelatorios {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Quadra relatorio = new Quadra();				
+				Quadra relatorio = new Quadra();
+				Usuario usuario = new Usuario();
 				
 				relatorio.setId(rs.getInt("id_quadra"));
+				usuario.setId(rs.getInt("id_usuario"));
 				
 				resultados.add(relatorio);
 			}
