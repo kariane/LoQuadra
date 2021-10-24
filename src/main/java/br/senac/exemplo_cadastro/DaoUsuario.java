@@ -49,7 +49,7 @@ public class DaoUsuario {
 	}
 	
 	public static void atualizar_usuario(Usuario usuario) throws Exception {
-		String sql = "UPDATE quadra SET nome = ?, email = ?, celular = ?, documento = ? WHERE id_usuario = ?;";
+		String sql = "UPDATE quadra SET nome = ?, email = ?, celular = ?, documento = ?, id_endereco = ? WHERE id_usuario = ?;";
 		
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
@@ -57,7 +57,8 @@ public class DaoUsuario {
 			ps.setString(2, usuario.getEmail());
 			ps.setString(3, usuario.getCelular());
 			ps.setString(4, usuario.getDocumento());
-			ps.setInt(5, usuario.getId());
+			ps.setInt(5, usuario.getEndereco());
+			ps.setInt(6, usuario.getId());
 			
 			ps.execute();
 		}

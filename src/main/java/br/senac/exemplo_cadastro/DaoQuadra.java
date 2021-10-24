@@ -45,13 +45,15 @@ public class DaoQuadra {
 	}
 	
 	public static void atualizar_quadra(Quadra quadra) throws Exception {
-		String sql = "UPDATE quadra SET tipo_quadra = ?, descricao = ? WHERE id_quadra = ?;";
+		String sql = "UPDATE quadra SET id_locador = ?, id_endereco = ?, tipo_quadra = ?, descricao = ? WHERE id_quadra = ?;";
 		
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
-			ps.setString(1, quadra.getTipoQuadra());
-			ps.setString(2, quadra.getDescricao());
-			ps.setInt(3, quadra.getId());
+			ps.setInt(1, quadra.getIdEndereco());
+			ps.setInt(2, quadra.getIdLocador());
+			ps.setString(3, quadra.getTipoQuadra());
+			ps.setString(4, quadra.getDescricao());
+			ps.setInt(5, quadra.getId());
 			
 			ps.execute();
 		}
