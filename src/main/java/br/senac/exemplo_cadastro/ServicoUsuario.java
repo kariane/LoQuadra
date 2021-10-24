@@ -1,6 +1,7 @@
 package br.senac.exemplo_cadastro;
 
 import java.util.List;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -10,15 +11,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("quadra")
-public class ServicoQuadra {
+@Path("usuario")
+public class ServicoUsuario {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void inserir(Quadra quadra) {
-		
+	public void inserir(Usuario usuario) {
 		try {
-			DaoQuadra.inserir_quadra(quadra);;			
+			DaoUsuario.inserir_usuario(usuario);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -27,9 +27,9 @@ public class ServicoQuadra {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Quadra> listar() {
+	public List<Usuario> listar(){
 		try {
-			return DaoQuadra.listar_quadra();
+			return DaoUsuario.listar_usuario();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,13 +37,11 @@ public class ServicoQuadra {
 		return null;
 	}
 	
-	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void atualizar(Quadra quadra) {
-		
+	public void atualizar(Usuario usuario) {
 		try {
-			DaoQuadra.atualizar_quadra(quadra);;			
+			DaoUsuario.atualizar_usuario(usuario);;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,9 +50,9 @@ public class ServicoQuadra {
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void excluir(Quadra quadra) {
+	public void excluir(Usuario usuario) {
 		try {
-			DaoQuadra.deletar_quadra(quadra);;
+			DaoUsuario.deletar_usuario(usuario);;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

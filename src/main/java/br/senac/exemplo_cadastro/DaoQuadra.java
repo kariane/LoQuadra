@@ -1,6 +1,9 @@
 package br.senac.exemplo_cadastro;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DaoQuadra {
 
@@ -11,15 +14,14 @@ public class DaoQuadra {
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			ps.setInt(1, quadra.getIdLocador());
 			ps.setInt(2, quadra.getIdEndereco());
-			ps.setInt(3, quadra.getTipoQuadra());
-			ps.setInt(4, quadra.getDescricao());
+			ps.setString(3, quadra.getTipoQuadra());
+			ps.setString(4, quadra.getDescricao());
 			
 			ps.execute();
 		}
-	}
+	}	
 	
 	public static List<Quadra> listar_quadra() throws Exception {
-		
 		String sql = "SELECT * FROM quadra";
 		
 		List<Quadra> resultados = new ArrayList<Quadra>();
@@ -30,13 +32,14 @@ public class DaoQuadra {
 			while(rs.next()) {
 				Quadra quadra = new Quadra();
 				
-				quadra.setIdLocador(rs.getIdLocador("id_locador"));
-				quadra.setIdEndereco(rs.getIdEndereco("id_endereco"));
-				quadra.setTipoQuadra(rs.getTipoQuadra("tipo_quadra"));
-				quadra.setDescricao(rs.getDescricao("descricao"));
+				quadra.setId(rs.getInt("id_quadra"));
+				quadra.setIdLocador(rs.getInt("Id_locador"));
+				quadra.setIdEndereco(rs.getInt("id_endereco"));
+				quadra.setTipoQuadra(rs.getString("tipo_quadra"));
+				quadra.setDescricao(rs.getString("descricao"));
+				
+				resultados.add(quadra);
 			}
-			
-			resultados.add(quadra);
 		}
 		return resultados;
 	}
@@ -48,7 +51,7 @@ public class DaoQuadra {
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
 			ps.setString(1, quadra.getTipoQuadra());
 			ps.setString(2, quadra.getDescricao());
-			ps.setInt(3, quadra.getInt());
+			ps.setInt(3, quadra.getId());
 			
 			ps.execute();
 		}
