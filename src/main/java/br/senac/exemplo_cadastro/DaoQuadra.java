@@ -8,14 +8,15 @@ import java.util.List;
 public class DaoQuadra {
 
 	public static void inserir_quadra(Quadra quadra) throws Exception {
-		String sql = "INSERT INTO quadra (id_locador, id_endereco, tipo_quadra, descricao) VALUES(?, ?, ?, ?);";
+		String sql = "INSERT INTO quadra (id_locador, id_endereco, nome_quadra, tipo_quadra, descricao) VALUES(?, ?, ?, ?);";
 		
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			ps.setInt(1, quadra.getIdLocador());
 			ps.setInt(2, quadra.getIdEndereco());
-			ps.setString(3, quadra.getTipoQuadra());
-			ps.setString(4, quadra.getDescricao());
+			ps.setString(4, quadra.getNomeQuadra());
+			ps.setString(5, quadra.getTipoQuadra());
+			ps.setString(6, quadra.getDescricao());
 			
 			ps.execute();
 		}
@@ -35,6 +36,7 @@ public class DaoQuadra {
 				quadra.setId(rs.getInt("id_quadra"));
 				quadra.setIdLocador(rs.getInt("Id_locador"));
 				quadra.setIdEndereco(rs.getInt("id_endereco"));
+				quadra.setNomeQuadra(rs.getString("nome_quadra"));
 				quadra.setTipoQuadra(rs.getString("tipo_quadra"));
 				quadra.setDescricao(rs.getString("descricao"));
 				
@@ -45,15 +47,16 @@ public class DaoQuadra {
 	}
 	
 	public static void atualizar_quadra(Quadra quadra) throws Exception {
-		String sql = "UPDATE quadra SET id_locador = ?, id_endereco = ?, tipo_quadra = ?, descricao = ? WHERE id_quadra = ?;";
+		String sql = "UPDATE quadra SET id_locador = ?, id_endereco = ?, nome_quadra = ?, tipo_quadra = ?, descricao = ? WHERE id_quadra = ?;";
 		
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
 			ps.setInt(1, quadra.getIdEndereco());
 			ps.setInt(2, quadra.getIdLocador());
-			ps.setString(3, quadra.getTipoQuadra());
-			ps.setString(4, quadra.getDescricao());
-			ps.setInt(5, quadra.getId());
+			ps.setString(3, quadra.getNomeQuadra());
+			ps.setString(4, quadra.getTipoQuadra());
+			ps.setString(5, quadra.getDescricao());
+			ps.setInt(6, quadra.getId());
 			
 			ps.execute();
 		}

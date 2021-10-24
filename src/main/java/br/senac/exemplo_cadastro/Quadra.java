@@ -5,6 +5,7 @@ public class Quadra {
 	private int id;
 	private int idLocador;
 	private int idEndereco;
+	private String nomeQuadra;
 	private String tipoQuadra;
 	private String descricao;
 	
@@ -47,4 +48,13 @@ public class Quadra {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public String getNomeQuadra() {
+		return nomeQuadra;
+	}
+
+	public void setNomeQuadra(String nomeQuadra) {
+		this.nomeQuadra = nomeQuadra;
+	}
+	
 }
