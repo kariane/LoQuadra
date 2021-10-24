@@ -57,7 +57,7 @@ public class DaoUsuario {
 			ps.setString(2, usuario.getEmail());
 			ps.setString(3, usuario.getCelular());
 			ps.setString(4, usuario.getDocumento());
-			ps.setInt(5, usuario.getEndereco());
+			ps.setInt(5, usuario.getIdEndereco());
 			ps.setInt(6, usuario.getId());
 			
 			ps.execute();
