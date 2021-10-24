@@ -39,14 +39,14 @@ public class DaoLocacao {
 			while(rs.next()) {
 				Locacao locacao = new Locacao();
 				
-				locacao.setId(rs.getInt("id_locacao"));
+				locacao.setId(rs.getInt("idLocacao"));
 				locacao.setIdUsuario(rs.getInt("idUsuario"));
 				locacao.setIdQuadra(rs.getInt("idQuadra"));
 				locacao.setIdPagamento(rs.getInt("idPagamento"));
 				locacao.setData_hora_inicial(rs.getString("data_hora_inicial"));
 				locacao.setData_hora_final(rs.getString("data_hora_final"));
 				locacao.setValor(rs.getFloat("valor"));
-				locacao.setStatus_locacao(rs.getString("complemento"));
+				locacao.setStatus_locacao(rs.getString("Status_locacao"));
 				
 				resultados.add(locacao);
 			}
@@ -55,15 +55,18 @@ public class DaoLocacao {
 	}
 	
 	public static void atualizar_locacao(Locacao locacao) throws Exception {
-		String sql = "UPDATE locacao SET data_hora_inicial = ?, data_hora_final = ?, valor = ?, status_locacao = ? WHERE id_locacao = ?;";
+		String sql = "UPDATE locacao SET idUsuario = ?, idQuadra = ?, idPagamento = ?, data_hora_inicial = ?, data_hora_final = ?, valor = ?, status_locacao = ? WHERE id_locacao = ?;";
 		
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
-			ps.setString(1, locacao.getData_hora_inicial());
-			ps.setString(2, locacao.getData_hora_final());
-			ps.setFloat(3, locacao.getValor());
-			ps.setString(4, locacao.getStatus_locacao());
-			ps.setInt(5, locacao.getId());
+			ps.setInt(1, locacao.getIdUsuario());
+			ps.setInt(2, locacao.getIdQuadra());
+			ps.setInt(3, locacao.getIdPagamento());
+			ps.setString(4, locacao.getData_hora_inicial());
+			ps.setString(5, locacao.getData_hora_final());
+			ps.setFloat(6, locacao.getValor());
+			ps.setString(7, locacao.getStatus_locacao());
+			ps.setInt(8, locacao.getId());
 			
 			ps.execute();
 		}
