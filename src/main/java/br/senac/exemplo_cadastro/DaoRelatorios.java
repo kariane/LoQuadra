@@ -24,9 +24,9 @@ public class DaoRelatorios {
 				relatorio.setIdLocacao(rs.getInt("id_locacao"));
 				relatorio.setNome(rs.getString("nome"));
 				relatorio.setNomeQuadra(rs.getString("nome_quadra"));
-				relatorio.setTipoQuadra(rs.getString("typo_quadra"));
+				relatorio.setTipoQuadra(rs.getString("tipo_quadra"));
 				relatorio.setValor(rs.getFloat("valor"));
-				relatorio.setStatusLocacao(rs.getString("typo_quadra"));
+				relatorio.setStatusLocacao(rs.getString("status_locacao"));
 				
 				resultados.add(relatorio);
 			}
@@ -34,19 +34,20 @@ public class DaoRelatorios {
 		return resultados;
 	}
 	
-	public static List<Locacao> relatorio_geral() throws Exception {
+	public static List<Relatorio2> relatorio_geral() throws Exception {
 		
-		String sql = "SELECT MIN(A.valor) AS \"Quadra com menor valor\",MAX(A.valor) AS \"Quadra com maior valor\" FROM locacao as A;";
+		String sql = "SELECT MIN(valor) as vquadra_min,MAX(valor) as vquadra_max FROM locacao;";
 		
-		List<Locacao> resultados = new ArrayList<Locacao>();
+		List<Relatorio2> resultados = new ArrayList<Relatorio2>();
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Locacao relatorio = new Locacao();
+				Relatorio2 relatorio = new Relatorio2();
 				
-				relatorio.setValor(rs.getFloat("valor"));
+				relatorio.setVquadra_min(rs.getFloat("vquadra_min"));
+				relatorio.setVquadra_max(rs.getFloat("vquadra_max"));
 				
 				resultados.add(relatorio);
 			}				

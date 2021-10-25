@@ -26,7 +26,7 @@ public class ServicoRelatorios {
 	@Path("relatorio2")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Locacao> listar2(){
+	public List<Relatorio2> listar2(){
 		try {
 			return DaoRelatorios.relatorio_geral();
 		} catch (Exception e) {

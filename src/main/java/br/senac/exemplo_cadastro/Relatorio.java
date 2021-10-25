@@ -45,6 +45,5 @@ public class Relatorio {
 	public void setStatusLocacao(String statusLocacao) {
 		this.statusLocacao = statusLocacao;
 	}
-	
-	
+		
 }
