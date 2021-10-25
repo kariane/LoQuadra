@@ -30,4 +30,24 @@ public class DaoRelatorios {
 		}
 		return resultados;
 	}
+	
+	public static List<Locacao> relatorio_geral() throws Exception {
+		
+		String sql = "SELECT MIN(A.valor) AS \"Quadra com menor valor\",MAX(A.valor) AS \"Quadra com maior valor\" FROM locacao as A;";
+		
+		List<Locacao> resultados = new ArrayList<Locacao>();
+		
+		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Locacao relatorio = new Locacao();
+				
+				relatorio.setValor(rs.getFloat("valor"));
+				
+				resultados.add(relatorio);
+			}				
+		}
+		return resultados;
+	}
 }
