@@ -13,7 +13,7 @@ public class ServicoRelatorios {
 	@Path("relatorio1")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Quadra> listar1(){
+	public List<Relatorio> listar1(){
 		try {
 			return DaoRelatorios.relatorio_quadras_mais_caras();
 		} catch (Exception e) {
