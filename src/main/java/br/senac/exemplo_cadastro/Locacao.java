@@ -1,7 +1,7 @@
 package br.senac.exemplo_cadastro;
 
 public class Locacao {
-	
+
 	private String data_hora_inicial;
 	private String data_hora_final;
 	private float valor;
@@ -65,7 +65,7 @@ public class Locacao {
 	public void setTipo_pagamento(String tipo_pagamento) {
 		this.tipo_pagamento = tipo_pagamento;
 	}
-	
-	
+
+
 
 }
