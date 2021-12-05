@@ -8,25 +8,24 @@ import java.util.List;
 
 public class DaoLocacao {
 
-	/*
+
 	public static void inserir_locacao(Locacao locacao) throws Exception {
-		String sql = "INSERT INTO locacao(id_usuario, id_quadra, id_pagamento, data_hora_inicial, data_hora_final, valor, status_locacao) VALUES(?, ?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO locacao(id_usuario, id_quadra, id_pagamento, data_hora_inicial, data_hora_final, valor, status_locacao) SELECT id_usuario,(SELECT id_quadra FROM quadra WHERE nome_quadra = ?),(SELECT id_pagamento FROM pagamento WHERE tipo_pagamento = ?), ?,  ?, ?, ? FROM usuario WHERE nome  = ? ;";
 
 		//try-with-resources
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
 
-			ps.setInt(1, locacao.getIdUsuario());
-			ps.setInt(2, locacao.getIdQuadra());
-			ps.setInt(3, locacao.getIdPagamento());
-			ps.setString(4, locacao.getData_hora_inicial());
-			ps.setString(5, locacao.getData_hora_final());
-			ps.setFloat(6, locacao.getValor());
-			ps.setString(7, locacao.getStatus_locacao());
-
+			ps.setString(1, locacao.getQuadra_nome());
+			ps.setString(2, locacao.getTipo_pagamento());
+			ps.setString(3, locacao.getData_hora_inicial());
+			ps.setString(4, locacao.getData_hora_final());
+			ps.setFloat(5, locacao.getValor());
+			ps.setString(6, locacao.getStatus_locacao());
+			ps.setString(7, locacao.getNome());
 			ps.execute();
 		}
 
-	}*/
+	}
 
 	public static List<Locacao> listar_locacao()throws Exception  {
 
@@ -39,7 +38,7 @@ public class DaoLocacao {
 
 			while(rs.next()) {
 				Locacao locacao = new Locacao();
-				
+
 				locacao.setNome(rs.getString("nome"));
 				locacao.setQuadra_nome(rs.getString("quadra_nome"));
 				locacao.setTipo_pagamento(rs.getString("tipo_pagamento"));
